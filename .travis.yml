@@ -41,3 +41,4 @@ deploy:
   file: myapp/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
   on:
     repo: bastardapp/travis
+  skip_cleanup: true
