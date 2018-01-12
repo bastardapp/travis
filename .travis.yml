@@ -27,6 +27,7 @@ script:
     - cd myapp
     - ionic cordova platform add android
     - cordova build --release android
+    - cd ..
 notifications:
   email:
     - 28463842@etlgr.com
