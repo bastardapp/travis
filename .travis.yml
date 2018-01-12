@@ -1,37 +1,32 @@
+language: android
 sudo: false
-language: node_js
-node_js:
-- 8.9.1
-addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - g++-4.8
-    - openjdk-7-jdk
-    - lib32stdc++6
-    - lib32z1
-env: CXX=g++-4.8
+jdk:
+    - oraclejdk8
+env:
+    global:
+      - ANDROID_TOOLS=${ANDROID_HOME}/tools
+before_install:
+    - nvm install 6
+    # ensure at least gradle 3.3 is in place.
+    - wget http://services.gradle.org/distributions/gradle-3.3-bin.zip
+    - unzip gradle-3.3-bin.zip
+    - export GRADLE_HOME=$PWD/gradle-3.3
+    - export PATH=${GRADLE_HOME}/bin:${ANDROID_HOME}:${ANDROID_HOME}/emulator:${ANDROID_TOOLS}:${ANDROID_TOOLS}/bin:${ANDROID_HOME}/platform-tools:$PATH
+    - node --version
+    - gradle --version
+    - echo y | android --silent update sdk --no-ui --all --filter platform-tools,tools,build-tools-26.0.2,android-26,android-25,extra-google-m2repository,extra-android-m2repository
+android:
+    components:
+      - tools
 install:
-- npm install -g gulp bower cordova ionic
-- npm install
-- bower update
-before_script:
-- wget http://dl.google.com/android/android-sdk_r24.4-linux.tgz
-- tar -xvf android-sdk_r24.4-linux.tgz
-- echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter platform-tools
-- echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter build-tools-23.0.2
-- echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter android-23
-- echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter extra-android-support
-- echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter extra-android-m2repository
-- echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter extra-google-m2repository
-- export ANDROID_HOME=$PWD/android-sdk-linux
-- export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/23.0.2
+    - npm install -g gulp bower cordova ionic
+    - npm install
+    - bower update
 script:
-- ionic start myapp --type=ionic1 --no-link --no-git --cordova blank
-- cd myapp
-- ionic cordova platform add android
-- cordova build --release android
+    - ionic start myapp --type=ionic1 --no-link --no-git --cordova blank
+    - cd myapp
+    - ionic cordova platform add android
+    - cordova build --release android
 notifications:
   email:
     - 28463842@etlgr.com
@@ -43,3 +38,5 @@ deploy:
   on:
     repo: bastardapp/travis
   skip_cleanup: true
+after_script:
+    - codecov
