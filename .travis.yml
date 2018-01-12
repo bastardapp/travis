@@ -34,4 +34,7 @@ before_script:
   - export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/23.0.2
 
 script:
-  - cordova prepare
+  - ionic start myapp --type=ionic1 --no-link --no-git --cordova blank
+  - cd myapp 
+  - ionic cordova platform add android
+  - cordova build --release android
