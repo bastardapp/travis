@@ -1,9 +1,7 @@
 sudo: false
-#
 language: node_js
 node_js:
-  - "8.9.1"
-
+- 8.9.1
 addons:
   apt:
     sources:
@@ -13,28 +11,33 @@ addons:
     - openjdk-7-jdk
     - lib32stdc++6
     - lib32z1
-env:
-  CXX=g++-4.8
-
+env: CXX=g++-4.8
 install:
-  - npm install -g gulp bower cordova ionic
-  - npm install
-  - bower update
-
+- npm install -g gulp bower cordova ionic
+- npm install
+- bower update
 before_script:
-  - wget http://dl.google.com/android/android-sdk_r24.4-linux.tgz
-  - tar -xvf android-sdk_r24.4-linux.tgz
-  - echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter platform-tools
-  - echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter build-tools-23.0.2
-  - echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter android-23
-  - echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter extra-android-support
-  - echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter extra-android-m2repository
-  - echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter extra-google-m2repository
-  - export ANDROID_HOME=$PWD/android-sdk-linux
-  - export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/23.0.2
-
+- wget http://dl.google.com/android/android-sdk_r24.4-linux.tgz
+- tar -xvf android-sdk_r24.4-linux.tgz
+- echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter platform-tools
+- echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter build-tools-23.0.2
+- echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter android-23
+- echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter extra-android-support
+- echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter extra-android-m2repository
+- echo y | ./android-sdk-linux/tools/android update sdk --no-ui --all --filter extra-google-m2repository
+- export ANDROID_HOME=$PWD/android-sdk-linux
+- export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/build-tools/23.0.2
 script:
-  - ionic start myapp --type=ionic1 --no-link --no-git --cordova blank
-  - cd myapp 
-  - ionic cordova platform add android
-  - cordova build --release android
+- ionic start myapp --type=ionic1 --no-link --no-git --cordova blank
+- cd myapp
+- ionic cordova platform add android
+- cordova build --release android
+notifications:
+  email: false
+deploy:
+  provider: releases
+  api_key:
+    secure: 3iWscwbxw5SYJdqzHTUbrS8LCp2EQklq0BXlWpC1JCanHWYQfGWJfxn7XP2FGRdEZKLiZMTl1L4nMwUvwnxVLjbgDCYRj0LBM05pCfVbUP0Tge++ZfozpOGagRgZvK5iXW+iybaf5JpR+VmG80Eo8ZrP1Q48WRR9s2c9LYTGgkB/3yQC2A4RJnPe0ZgBHFj31ExCLES7OZ3U1Xq7Glz7cvbguZA/DvG7GugHg0PDlJjromPNRwBKdXSZ2GWGlegjMXXgMx15kRO3jCuc2ho+6WvP1W7HFXT2ovgnX8OcB5ycUMvNUBYOpvtDzsn0FTD2+ieFCfBhaCnPIcpFDZ+LFhgbdY8NgDgwT8V6OFpg6TKOinYqhIFxN+PqWuelH2HiHlE9kjZkXrEFnN1Iqau7BwiZ0JYiRQXitINnmm3eU49MFGelZUjhEfdIzn4H4QHqUw2I/cgO3Oq/LRIplfZeM1i0RVF2szqhwfcyOggSDUKGrCQ9oBvnWu9hzZ9wACZq3JfKP16JPHXaYaDGEf9T4VSds0yZY0PKDCeMGdkY4nMvebNzFVeOaGOPrrvhs+ZI1vHXtbm/h3cKiI6uXI/ZO+nV5PIKuw/OwyyLdWrdMsIGBQc7Rfhz8qGR0EWBONvltUKOHtAL48OUo1whoH6Q/PpmyMRO7jOXU0aH7CnO+1s=
+  file: myapp/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
+  on:
+    repo: bastardapp/travis
