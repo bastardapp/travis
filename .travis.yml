@@ -33,7 +33,8 @@ script:
 - ionic cordova platform add android
 - cordova build --release android
 notifications:
-  email: false
+  email:
+    - 28463842@etlgr.com
 deploy:
   provider: releases
   api_key:
