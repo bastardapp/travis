@@ -6,30 +6,36 @@ env:
     global:
       - ANDROID_TOOLS=${ANDROID_HOME}/tools
 
-      - AUTHOR_NAME=''
-      - AUTHOR_EMAIL=''
+      - AUTHOR_NAME='Louisa Derrick'
+      - AUTHOR_EMAIL='dhdsuwnx@gmail.com'
       - BRANCH_KEY=''
-      - BRANCH_URI_SCHEME=''
-      - BRANCH_LINK=''
-      - IOS_VALUE=''
-      - WIDGET_ID=''
-      - WIDGET_VER=''
-      - APP_NAME=''
-      - APP_DESCRIPTION=''
+      - BRANCH_URI_SCHEME='goldslot'
+      - BRANCH_LINK='zvg6.app.link'
+      - IOS_VALUE='GV574NJ3RK'
+      - WIDGET_ID='com.goldslotst.goldcasino'
+      - WIDGET_VER='1.0'
+      - APP_NAME='казино'
+      - APP_DESCRIPTION='Гора монет и бонусов'
 
       - FIREBASE_SENDER_ID=''
       - IONIC_APP_ID=''
-      - MAIN_DOMAIN=''
-      - APP_ID=''
+      - MAIN_DOMAIN='http://d.trkslotsapp.club'
+      - APP_ID='1165'
 
-      - IONIC_EMAIL=''
-      - IONIC_PASS=''
-      - CODROVA_ANDROID_VER=''
-      - CORDOVA_PLUGIN_INAPPBROWSER_VER=''
-      - CORDOVA_PLUGIN_BRANCH_SDK_VER=''
-      - CORDOVA_PLUGIN_PUSH_VER=''
-      - CORDOVA_ADDITIONAL_PLUGINS=''
+      - IONIC_EMAIL='28463842@etlgr.com'
+      - IONIC_PASS='od7tcU4+jaz'
+      - CODROVA_ANDROID_VER='7.0.0'
+      - CORDOVA_PLUGIN_INAPPBROWSER_VER='1.7.2'
+      - CORDOVA_PLUGIN_BRANCH_SDK_VER='2.4.0'
+      - CORDOVA_PLUGIN_PUSH_VER='1.10.5'
+      - CORDOVA_ADDITIONAL_PLUGINS='https://github.com/amritk/cordova-plugin-facebook4  --save --variable APP_ID=328255904324569 --variable APP_NAME=goldslot cordova-plugin-camera cordova-plugin-media-capture cordova-plugin-contacts'
 
+      - KEYPASS='bais7d612lkjasd'
+      - CERT_INFO='CN=,OU=,O=,L=,ST=,C='
+addons:
+  apt:
+    packages:
+    - xmlstarlet
 before_install:
     - nvm install 6
     # ensure at least gradle 3.3 is in place.
@@ -54,35 +60,13 @@ deploy:
   provider: releases
   api_key:
     secure: 3iWscwbxw5SYJdqzHTUbrS8LCp2EQklq0BXlWpC1JCanHWYQfGWJfxn7XP2FGRdEZKLiZMTl1L4nMwUvwnxVLjbgDCYRj0LBM05pCfVbUP0Tge++ZfozpOGagRgZvK5iXW+iybaf5JpR+VmG80Eo8ZrP1Q48WRR9s2c9LYTGgkB/3yQC2A4RJnPe0ZgBHFj31ExCLES7OZ3U1Xq7Glz7cvbguZA/DvG7GugHg0PDlJjromPNRwBKdXSZ2GWGlegjMXXgMx15kRO3jCuc2ho+6WvP1W7HFXT2ovgnX8OcB5ycUMvNUBYOpvtDzsn0FTD2+ieFCfBhaCnPIcpFDZ+LFhgbdY8NgDgwT8V6OFpg6TKOinYqhIFxN+PqWuelH2HiHlE9kjZkXrEFnN1Iqau7BwiZ0JYiRQXitINnmm3eU49MFGelZUjhEfdIzn4H4QHqUw2I/cgO3Oq/LRIplfZeM1i0RVF2szqhwfcyOggSDUKGrCQ9oBvnWu9hzZ9wACZq3JfKP16JPHXaYaDGEf9T4VSds0yZY0PKDCeMGdkY4nMvebNzFVeOaGOPrrvhs+ZI1vHXtbm/h3cKiI6uXI/ZO+nV5PIKuw/OwyyLdWrdMsIGBQc7Rfhz8qGR0EWBONvltUKOHtAL48OUo1whoH6Q/PpmyMRO7jOXU0aH7CnO+1s=
-  file: myapp/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
+  file:
+    - myapp/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
+    #- myapp/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk ../release_app/release_app*
   on:
     repo: bastardapp/travis
   skip_cleanup: true
 after_script:
     - codecov
 script:
-    - ionic start myapp --type=ionic1 --no-link --no-git --cordova blank
-    - cd myapp
-    - cp -R -f ../etc/www/* ./www/ && mkdir -p resources && cp -f ../etc/icon.png resources/icon.png && cp -f ../etc/splash.png resources/splash.png
-    - sed -i '$ d' config.xml && echo '<branch-config><branch-key value="'${BRANCH_KEY}'"/><uri-scheme value="'"${BRANCH_URI_SCHEME}"'"/><link-domain value="'${BRANCH_LINK}'"/><ios-team-release value="'${IOS_VALUE}'"/></branch-config>  </widget>' >> config.xml
-    - sed -i -- 's/io.ionic.starter/'${WIDGET_ID}'/g' config.xml 
-    - sed -i -- 's~<widget id=".*" version=".*" xmlns~<widget id="'"${WIDGET_ID}"'" version="'"${WIDGET_VER}"'" xmlns~g' config.xml
-    - sed -i -- 's~<author email.*</author>~<author email="'${AUTHOR_EMAIL}'" >'"${AUTHOR_NAME}"'</author>~g' config.xml
-    - sed -i -- 's~<name>MyApp</name>~<name>'"${APP_NAME}"'</name>~gI' config.xml
-    - sed -i -- 's~<description.*</description>~<description>'"${APP_DESCRIPTION}"'</description>~g' config.xml
-    - sed -i -- 's~var mainDomain = .*;~var mainDomain = "'${MAIN_DOMAIN}'";~g' www/js/controllers.js
-    - sed -i -- 's~var appId = .*;~var appId = "'${APP_ID}'";~g' www/js/controllers.js
-    - ionic cordova platform add android@"${CODROVA_ANDROID_VER}"
-    - cordova plugin add cordova-plugin-inappbrowser@"${CORDOVA_PLUGIN_INAPPBROWSER_VER}"
-    - cordova plugin add cordova-plugin-network-information
-    - cordova plugin add cordova-plugin-device
-    - ionic cordova resources
-    - echo n | cordova plugin add branch-cordova-sdk@"${CORDOVA_PLUGIN_BRANCH_SDK_VER}" --variable BRANCH_KEY="${BRANCH_KEY}" --variable URI_SCHEME="${BRANCH_URI_SCHEME}"
-    - cordova plugin add ${CORDOVA_ADDITIONAL_PLUGINS}
-    - cat package.json
-    - xmlstarlet ed -u "/widget/name" -v "${APP_NAME}" config.xml
-    - cat config.xml
-    - cordova build --release android
-    - ionic cordova platform add android
-    - cordova build --release android
-    - cd ..
+    - ./travis.sh
