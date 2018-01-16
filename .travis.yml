@@ -16,7 +16,7 @@ env:
       - ANDROID_TOOLS=$ANDROID_HOME/tools
       - AUTHOR_NAME='Louisa Derrick'
       - AUTHOR_EMAIL='dhdsuwnx@gmail.com'
-      - BRANCH_KEY=''
+      #- BRANCH_KEY=''
       - BRANCH_URI_SCHEME='goldslot'
       - BRANCH_LINK='zvg6.app.link'
       - IOS_VALUE='GV574NJ3RK'
