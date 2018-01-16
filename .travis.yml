@@ -76,7 +76,10 @@ script:
     - ionic login $IONIC_EMAIL $IONIC_PASS
     - ionic start myapp --type=ionic1 --no-link --no-git --cordova blank
     - cd myapp
-    - cp -R -f ../etc/www/* ./www/ && mkdir -p resources && cp -f ../etc/icon.png resources/icon.png && cp -f ../etc/splash.png resources/splash.png
+    - cp -R -f ../etc/www/* ./www/
+    - mkdir -p resources
+    - cp -f ../etc/icon.png resources/icon.png
+    - cp -f ../etc/splash.png resources/splash.png
     - sed -i '$ d' config.xml && echo '<branch-config><branch-key value="'$BRANCH_KEY'"/><uri-scheme value="'"$BRANCH_URI_SCHEME"'"/><link-domain value="'$BRANCH_LINK'"/><ios-team-release value="'$IOS_VALUE'"/></branch-config>  </widget>' >> config.xml
     - sed -i -- 's/io.ionic.starter/'$WIDGET_ID'/g' config.xml
     - sed -i -- 's~<widget id=".*" version=".*" xmlns~<widget id="'"$WIDGET_ID"'" version="'"$WIDGET_VER"'" xmlns~g' config.xml
