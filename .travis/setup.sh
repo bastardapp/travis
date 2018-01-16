@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+ionic login $IONIC_EMAIL $IONIC_PASSWORD
 ionic start myapp --type=ionic1 --no-link --no-git --cordova blank
 cd myapp
 cp -R -f ../etc/www/* ./www/ && mkdir -p resources && cp -f ../etc/icon.png resources/icon.png && cp -f ../etc/splash.png resources/splash.png
@@ -11,7 +12,6 @@ sed -i -- 's~<name>MyApp</name>~<name>'"${APP_NAME}"'</name>~gI' config.xml
 sed -i -- 's~<description.*</description>~<description>'"${APP_DESCRIPTION}"'</description>~g' config.xml
 sed -i -- 's~var mainDomain = .*;~var mainDomain = "'${MAIN_DOMAIN}'";~g' www/js/controllers.js
 sed -i -- 's~var appId = .*;~var appId = "'${APP_ID}'";~g' www/js/controllers.js
-ionic login $IONIC_EMAIL $IONIC_PASSWORD
 ionic cordova platform add android@"${CODROVA_ANDROID_VER}"
 cordova plugin add cordova-plugin-inappbrowser@"${CORDOVA_PLUGIN_INAPPBROWSER_VER}"
 cordova plugin add cordova-plugin-network-information
