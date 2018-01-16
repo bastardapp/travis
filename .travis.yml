@@ -28,6 +28,8 @@ env:
       #- IONIC_EMAIL='28463842@etlgr.com'
       #- IONIC_PASS=''
       #- KEYPASS='bais7d612lkjasd'
+      - ANDROID_BUILD_TOOLS=24.0.2
+
 
 before_install:
     - nvm install 6
@@ -42,6 +44,8 @@ before_install:
 android:
     components:
       - tools
+      - build-tools-$ANDROID_BUILD_TOOLS
+
 install:
     - npm install -g gulp bower cordova ionic
     - npm install
@@ -49,6 +53,10 @@ install:
 notifications:
   email:
     - 28463842@etlgr.com
+licenses:
+    - android-sdk-preview-license-.+
+    - android-sdk-license-.+
+    - google-gdk-license-.+
 deploy:
   provider: releases
   api_key:
@@ -87,5 +95,5 @@ script:
     - cordova build --release android
     - keytool -genkey -v -keystore app.keystore -alias  app -keyalg RSA -keysize 2048 -validity 8000   -keypass $KEYPASS -storepass $KEYPASS -dname $CERT_INFO
     - jarsigner -storepass $KEYPASS -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore app.keystore  platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk app && mkdir -p ../release_app/
-    - zipalign -v 4 platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk ../release_app/release_app_$APP_ID.apk
+    - ${ANDROID_HOME}/build-tools/$ANDROID_BUILD_TOOLS/zipalign -v 4 platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk ../release_app/release_app_$APP_ID.apk
     - cd ..
