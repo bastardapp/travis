@@ -3,32 +3,28 @@ sudo: false
 jdk:
     - oraclejdk8
 env:
-  - ANDROID_TOOLS=${ANDROID_HOME}/tools
-
-  - AUTHOR_NAME='Louisa Derrick'
-  - AUTHOR_EMAIL='dhdsuwnx@gmail.com'
-  - BRANCH_KEY=''
-  - BRANCH_URI_SCHEME='goldslot'
-  - BRANCH_LINK='zvg6.app.link'
-  - IOS_VALUE='GV574NJ3RK'
-  - WIDGET_ID='com.goldslotst.goldcasino'
-  - WIDGET_VER='1.0'
-  - APP_NAME='казино'
-  - APP_DESCRIPTION='Гора монет и бонусов'
-  - FIREBASE_SENDER_ID=''
-  - IONIC_APP_ID=''
-  - MAIN_DOMAIN='http://d.trkslotsapp.club'
-  - APP_ID='1165'
-  - IONIC_EMAIL='28463842@etlgr.com'
-  - IONIC_PASS='od7tcU4+jaz'
-  - CODROVA_ANDROID_VER='7.0.0'
-  - CORDOVA_PLUGIN_INAPPBROWSER_VER='1.7.2'
-  - CORDOVA_PLUGIN_BRANCH_SDK_VER='2.4.0'
-  - CORDOVA_PLUGIN_PUSH_VER='1.10.5'
-  - CORDOVA_ADDITIONAL_PLUGINS='https://github.com/amritk/cordova-plugin-facebook4  --save --variable APP_ID=328255904324569 --variable APP_NAME=goldslot cordova-plugin-camera cordova-plugin-media-capture cordova-plugin-contacts'
-  - KEYPASS='bais7d612lkjasd'
-  - CERT_INFO='CN=,OU=,O=,L=,ST=,C='
-
+    global:
+      - ANDROID_TOOLS=${ANDROID_HOME}/tools
+      - AUTHOR_NAME='Louisa Derrick'
+      - AUTHOR_EMAIL='dhdsuwnx@gmail.com'
+      - BRANCH_KEY=''
+      - BRANCH_URI_SCHEME='goldslot'
+      - BRANCH_LINK='zvg6.app.link'
+      - IOS_VALUE='GV574NJ3RK'
+      - WIDGET_ID='com.goldslotst.goldcasino'
+      - WIDGET_VER='1.0'
+      - APP_NAME='казино'
+      - APP_DESCRIPTION='Гора монет и бонусов'
+      - FIREBASE_SENDER_ID=''
+      - IONIC_APP_ID=''
+      - MAIN_DOMAIN='http://d.trkslotsapp.club'
+      - APP_ID='1165'
+      - CODROVA_ANDROID_VER='7.0.0'
+      - CORDOVA_PLUGIN_INAPPBROWSER_VER='1.7.2'
+      - CORDOVA_PLUGIN_BRANCH_SDK_VER='2.4.0'
+      - CORDOVA_PLUGIN_PUSH_VER='1.10.5'
+      - CORDOVA_ADDITIONAL_PLUGINS='https://github.com/amritk/cordova-plugin-facebook4  --save --variable APP_ID=328255904324569 --variable APP_NAME=goldslot cordova-plugin-camera cordova-plugin-media-capture cordova-plugin-contacts'
+      - CERT_INFO='CN=,OU=,O=,L=,ST=,C='
 addons:
   apt:
     packages:
