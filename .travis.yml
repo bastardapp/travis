@@ -69,4 +69,4 @@ deploy:
 after_script:
     - codecov
 script:
-    - ./travis.sh
+    - ./.travis/setup.sh
