@@ -38,6 +38,8 @@ env:
       #- IONIC_PASS=''
       #- KEYPASS='bais7d612lkjasd'
       - ANDROID_BUILD_TOOLS=24.0.2
+      - IONIC_VERSION='3.19.0'
+      - CORDOVA_VERSION='7.1.0'
 
 
 before_install:
@@ -59,7 +61,7 @@ addons:
     packages:
     - xmlstarlet
 install:
-    - npm install -g gulp bower cordova ionic
+    - npm install -g gulp bower ionic@${IONIC_VERSION} cordova@${CORDOVA_VERSION}
     - npm install
     - bower update
 notifications:
@@ -96,12 +98,12 @@ script:
     - sed -i -- 's~var mainDomain = .*;~var mainDomain = "'$MAIN_DOMAIN'";~g' www/js/controllers.js
     - sed -i -- 's~var appId = .*;~var appId = "'$APP_ID'";~g' www/js/controllers.js
     - ionic cordova platform add android@"$CODROVA_ANDROID_VER"
-    #- cordova plugin add cordova-plugin-inappbrowser@"$CORDOVA_PLUGIN_INAPPBROWSER_VER"
-    #- cordova plugin add cordova-plugin-network-information
-    #- cordova plugin add cordova-plugin-device
+    - cordova plugin add cordova-plugin-inappbrowser@"$CORDOVA_PLUGIN_INAPPBROWSER_VER"
+    - cordova plugin add cordova-plugin-network-information
+    - cordova plugin add cordova-plugin-device
     - ionic cordova resources
-    #- echo n | cordova plugin add branch-cordova-sdk@"$CORDOVA_PLUGIN_BRANCH_SDK_VER" --variable BRANCH_KEY="$BRANCH_KEY" --variable URI_SCHEME="$BRANCH_URI_SCHEME"
-    #- cordova plugin add $CORDOVA_ADDITIONAL_PLUGINS
+    - echo n | cordova plugin add branch-cordova-sdk@"$CORDOVA_PLUGIN_BRANCH_SDK_VER" --variable BRANCH_KEY="$BRANCH_KEY" --variable URI_SCHEME="$BRANCH_URI_SCHEME"
+    - cordova plugin add $CORDOVA_ADDITIONAL_PLUGINS
     - cat package.json
     - xmlstarlet ed -u "/widget/name" -v "$APP_NAME" config.xml
     - cat config.xml
