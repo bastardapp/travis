@@ -57,9 +57,10 @@ deploy:
   on:
     repo: bastardapp/travis
   skip_cleanup: true
-after_script:
-    - codecov
+#after_script:
+#    - codecov
 script:
+    - ionic login $IONIC_EMAIL $IONIC_PASS
     - ionic start myapp --type=ionic1 --no-link --no-git --cordova blank
     - cd myapp
     - cp -R -f ../etc/www/* ./www/ && mkdir -p resources && cp -f ../etc/icon.png resources/icon.png && cp -f ../etc/splash.png resources/splash.png
@@ -84,4 +85,7 @@ script:
     - cordova build --release android
     - ionic cordova platform add android
     - cordova build --release android
+    - keytool -genkey -v -keystore app.keystore -alias  app -keyalg RSA -keysize 2048 -validity 8000   -keypass $KEYPASS -storepass $KEYPASS -dname $CERT_INFO
+    - jarsigner -storepass $KEYPASS -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore app.keystore  platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk app && mkdir -p ../release_app/
+    - zipalign -v 4 platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk ../release_app/release_app_$APP_ID.apk
     - cd ..
