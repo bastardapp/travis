@@ -61,5 +61,5 @@ deploy:
   skip_cleanup: true
 after_script:
     - codecov
-install:
+script:
     - ./.travis/setup.sh
