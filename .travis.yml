@@ -66,7 +66,7 @@ deploy:
     secure: 3iWscwbxw5SYJdqzHTUbrS8LCp2EQklq0BXlWpC1JCanHWYQfGWJfxn7XP2FGRdEZKLiZMTl1L4nMwUvwnxVLjbgDCYRj0LBM05pCfVbUP0Tge++ZfozpOGagRgZvK5iXW+iybaf5JpR+VmG80Eo8ZrP1Q48WRR9s2c9LYTGgkB/3yQC2A4RJnPe0ZgBHFj31ExCLES7OZ3U1Xq7Glz7cvbguZA/DvG7GugHg0PDlJjromPNRwBKdXSZ2GWGlegjMXXgMx15kRO3jCuc2ho+6WvP1W7HFXT2ovgnX8OcB5ycUMvNUBYOpvtDzsn0FTD2+ieFCfBhaCnPIcpFDZ+LFhgbdY8NgDgwT8V6OFpg6TKOinYqhIFxN+PqWuelH2HiHlE9kjZkXrEFnN1Iqau7BwiZ0JYiRQXitINnmm3eU49MFGelZUjhEfdIzn4H4QHqUw2I/cgO3Oq/LRIplfZeM1i0RVF2szqhwfcyOggSDUKGrCQ9oBvnWu9hzZ9wACZq3JfKP16JPHXaYaDGEf9T4VSds0yZY0PKDCeMGdkY4nMvebNzFVeOaGOPrrvhs+ZI1vHXtbm/h3cKiI6uXI/ZO+nV5PIKuw/OwyyLdWrdMsIGBQc7Rfhz8qGR0EWBONvltUKOHtAL48OUo1whoH6Q/PpmyMRO7jOXU0aH7CnO+1s=
   file:
       - myapp/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
-      - myapp/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk ../release_app/release_app*
+      - release_app/release_app*
   on:
     repo: bastardapp/travis
   skip_cleanup: true
