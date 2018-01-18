@@ -18,12 +18,14 @@ angular.module('app.controllers', [])
                 hidden: 'no'
             };
 
-            vm.portal = mainDomain + '/?app_id=' + appId;
 
             $timeout(function () {
-                var deviceId = $cordovaDevice.getDevice();
+                alert('$cordovaDevice ' + $cordovaDevice)
+                alert('getUUID ' + angular.toJson($cordovaDevice.getUUID))
+                var deviceId = $cordovaDevice.getUUID();
+                alert('deviceId ' +  deviceId)
                 vm.isWorkingStatus = $cordovaNetwork.isOnline() ? 'on' : 'off';
-
+                vm.portal = mainDomain + '/?app_id=' + appId + '&gaid=' + deviceId;
 
                 if (Branch) {
                     Branch.initSession(function (data) {
@@ -94,9 +96,7 @@ angular.module('app.controllers', [])
 
 
                 $rootScope.$on('$cordovaInAppBrowser:exit', function (e, event) {
-                    if (vm.isWorkingStatus !== 'off') {
-                        $cordovaInAppBrowser.open(vm.portal, '_blank', options);
-                    }
+                    $cordovaInAppBrowser.open(vm.portal, '_blank', options);
                 });
 
 
