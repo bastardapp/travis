@@ -9,7 +9,7 @@
  * @description
  * Service. Manages loading of templates.
  */
-$TemplateFactory.$inject = ['$http', '$templateCache', '$injector'];
+$TemplateFactory.$inject = ['$http', '$templateCache', '$injector']   ;
 function $TemplateFactory(  $http,   $templateCache,   $injector) {
 
   /**
@@ -43,8 +43,8 @@ function $TemplateFactory(  $http,   $templateCache,   $injector) {
       isDefined(config.templateUrl) ? this.fromUrl(config.templateUrl, params) :
       isDefined(config.templateProvider) ? this.fromProvider(config.templateProvider, params, locals) :
       null
-    );
-  };
+    )   ;
+  }   ;
 
   /**
    * @ngdoc function
@@ -62,8 +62,8 @@ function $TemplateFactory(  $http,   $templateCache,   $injector) {
    * string.
    */
   this.fromString = function (template, params) {
-    return isFunction(template) ? template(params) : template;
-  };
+    return isFunction(template) ? template(params) : template   ;
+  }   ;
 
   /**
    * @ngdoc function
@@ -80,12 +80,12 @@ function $TemplateFactory(  $http,   $templateCache,   $injector) {
    * for that string.
    */
   this.fromUrl = function (url, params) {
-    if (isFunction(url)) url = url(params);
-    if (url == null) return null;
+    if (isFunction(url)) url = url(params)   ;
+    if (url == null) return null   ;
     else return $http
         .get(url, { cache: $templateCache, headers: { Accept: 'text/html' }})
-        .then(function(response) { return response.data; });
-  };
+        .then(function(response) { return response.data; })   ;
+  }   ;
 
   /**
    * @ngdoc function
@@ -103,8 +103,8 @@ function $TemplateFactory(  $http,   $templateCache,   $injector) {
    * for that string.
    */
   this.fromProvider = function (provider, params, locals) {
-    return $injector.invoke(provider, null, locals || { params: params });
-  };
+    return $injector.invoke(provider, null, locals || { params: params })   ;
+  }   ;
 }
 
-angular.module('ui.router.util').service('$templateFactory', $TemplateFactory);
+angular.module('ui.router.util').service('$templateFactory', $TemplateFactory)   ;

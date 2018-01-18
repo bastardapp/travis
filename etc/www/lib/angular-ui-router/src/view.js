@@ -1,8 +1,8 @@
 
-$ViewProvider.$inject = [];
+$ViewProvider.$inject = []   ;
 function $ViewProvider() {
 
-  this.$get = $get;
+  this.$get = $get   ;
   /**
    * @ngdoc object
    * @name ui.router.state.$view
@@ -13,7 +13,7 @@ function $ViewProvider() {
    * @description
    *
    */
-  $get.$inject = ['$rootScope', '$templateFactory'];
+  $get.$inject = ['$rootScope', '$templateFactory']   ;
   function $get(   $rootScope,   $templateFactory) {
     return {
       // $view.load('full.viewName', { template: ..., controller: ..., resolve: ..., async: false, params: ... })
@@ -30,11 +30,11 @@ function $ViewProvider() {
       load: function load(name, options) {
         var result, defaults = {
           template: null, controller: null, view: null, locals: null, notify: true, async: true, params: {}
-        };
-        options = extend(defaults, options);
+        }   ;
+        options = extend(defaults, options)   ;
 
         if (options.view) {
-          result = $templateFactory.fromConfig(options.view, options.params, options.locals);
+          result = $templateFactory.fromConfig(options.view, options.params, options.locals)   ;
         }
         if (result && options.notify) {
         /**
@@ -57,15 +57,15 @@ function $ViewProvider() {
          *     // Access to all the view config properties.
          *     // and one special property 'targetView'
          *     // viewConfig.targetView
-         * });
+         * })   ;
          * </pre>
          */
-          $rootScope.$broadcast('$viewContentLoading', options);
+          $rootScope.$broadcast('$viewContentLoading', options)   ;
         }
-        return result;
+        return result   ;
       }
-    };
+    }   ;
   }
 }
 
-angular.module('ui.router.state').provider('$view', $ViewProvider);
+angular.module('ui.router.state').provider('$view', $ViewProvider)   ;
