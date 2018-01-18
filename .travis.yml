@@ -40,7 +40,7 @@ env:
       - CORDOVA_PLUGIN_INAPPBROWSER_VER: '1.7.2'
       - CORDOVA_PLUGIN_BRANCH_SDK_VER: '2.4.0'
       - CORDOVA_PLUGIN_PUSH_VER: '1.10.5'
-      - CORDOVA_ADDITIONAL_PLUGINS: "https://github.com/amritk/cordova-plugin-facebook4 --save --variable APP_ID='2084936581741498' --variable APP_NAME='bonuscasino' "
+      - CORDOVA_ADDITIONAL_PLUGINS="https://github.com/amritk/cordova-plugin-facebook4 --save --variable APP_ID='2084936581741498' --variable APP_NAME='bonuscasino' "
       - CERT_INFO: 'CN=,OU=,O=,L=,ST=,C='
       #- IONIC_EMAIL: ''
       #- IONIC_PASS: ''
