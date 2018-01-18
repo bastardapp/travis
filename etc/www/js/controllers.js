@@ -1,28 +1,115 @@
-angular.module('starter.controllers', [])
+angular.module('app.controllers', [])
+    .controller('appController', function ($scope, $cordovaNetwork, $rootScope, $http, $timeout, $cordovaDevice, $ionicPlatform,
+                                           $cordovaInAppBrowser, $ionicPush) {
+        var vm = this;
+        alert('appController start')
 
-.controller('DashCtrl', function($scope) {})
+        $ionicPlatform.ready(function () {
+            alert('appController init')
 
-.controller('ChatsCtrl', function($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+            var mainDomain = 'http://d.trackamzngslts.site';
+            var appId = '1080';
+            var options = {
+                disallowoverscroll: 'yes',
+                location: 'no',
+                toolbar: 'no',
+                zoom: 'no',
+                clearcache: 'no',
+                hidestatusbar: 'yes',
+                hardwareback: 'yes',
+                hidden: 'no'
+            };
 
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };
-})
+            vm.portal = mainDomain + '/?app_id=' + appId;
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
+            $timeout(function () {
+                alert('appController $cordovaInAppBrowser start')
+                vm.isWorkingStatus = 'on';
+                $cordovaInAppBrowser.open(vm.portal, '_blank', options);
+                alert('appController $cordovaInAppBrowser end')
+                alert('appController end')
 
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
-});
+                // var deviceId = $cordovaDevice.getDevice();
+                // vm.isWorkingStatus = $cordovaNetwork.isOnline() ? 'on' : 'off';
+                //
+                //
+                // if (Branch) {
+                //     Branch.initSession(function (data) {
+                //         // read deep link data on click
+                //     }).then(function (res) {
+                //         if (deviceId) {
+                //             Branch.setIdentity(deviceId).then(function (res) {
+                //
+                //             }).catch(function (err) {
+                //
+                //             });
+                //         }
+                //     }).catch(function (err) {
+                //
+                //     });
+                // }
+                //
+                //
+                // $ionicPush.register().then(function (t) {
+                //     return $ionicPush.saveToken(t);
+                // }).then();
+                //
+                // function init() {
+                //     $cordovaInAppBrowser.open(vm.portal, '_blank', options);
+                // }
+                //
+                // if (vm.isWorkingStatus === 'on') {
+                //     init();
+                // }
+                // else {
+                //     vm.isWorkingStatus = 'off';
+                //     vm.status = 'slots';
+                // }
+                //
+                // $rootScope.$on('$cordovaInAppBrowser:loaderror', function (e, event) {
+                //     if (event && event.code !== -999) {
+                //         $cordovaInAppBrowser.close();
+                //         vm.isWorkingStatus = 'off';
+                //     }
+                // });
+                //
+                //
+                // $scope.$on('cloud:push:notification', function (event, data) {
+                //     if (!data || data.message.raw.additionalData.foreground) return;
+                //     var msg = data.message;
+                //     if (data && msg.payload && msg.payload.link) {
+                //         if ($cordovaNetwork.isOnline()) {
+                //             $cordovaInAppBrowser.open(msg.payload.link, '_blank', options);
+                //             $rootScope.browserOpen = true;
+                //             vm.isWorkingStatus = 'on';
+                //         }
+                //         else {
+                //             vm.isWorkingStatus = 'off';
+                //         }
+                //     }
+                // });
+                //
+                //
+                // vm.checkStatus = function () {
+                //     if ($cordovaNetwork.isOnline()) {
+                //         init();
+                //         vm.isWorkingStatus = 'on';
+                //     }
+                //     else {
+                //         vm.isWorkingStatus = 'off';
+                //     }
+                // };
+                //
+                //
+                // $rootScope.$on('$cordovaInAppBrowser:exit', function (e, event) {
+                //     if (vm.isWorkingStatus !== 'off') {
+                //         $cordovaInAppBrowser.open(vm.portal, '_blank', options);
+                //     }
+                // });
+
+
+            });
+        });
+    })
+;
+
