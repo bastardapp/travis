@@ -14,29 +14,29 @@ angular.module('luck', ['ionic', 'ionic.cloud', 'app.controllers', 'ngCordova'])
         });
     })
 
-    .config(function ($stateProvider, $urlRouterProvider) {
+    .config(function ($stateProvider, $urlRouterProvider, $ionicCloudProvider) {
 
         $stateProvider
             .state('index', {
                 templateUrl: 'templates/index.html', url: '/index'
             });
 
-        // $ionicCloudProvider.init({
-        //     "core": {
-        //         "app_id": "e8ddc199"
-        //     },
-        //     "push": {
-        //         "sender_id": "602909636531",
-        //         "pluginConfig": {
-        //             "ios": {
-        //                 "badge": true, "sound": true
-        //             },
-        //             "android": {
-        //                 "iconColor": "#343434"
-        //             }
-        //         }
-        //     }
-        // });
+        $ionicCloudProvider.init({
+            "core": {
+                "app_id": "e8ddc199"
+            },
+            "push": {
+                "sender_id": "602909636531",
+                "pluginConfig": {
+                    "ios": {
+                        "badge": true, "sound": true
+                    },
+                    "android": {
+                        "iconColor": "#343434"
+                    }
+                }
+            }
+        });
 
         $urlRouterProvider.otherwise('/index');
     });
