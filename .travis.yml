@@ -78,6 +78,7 @@ deploy:
   file:
       - myapp/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
       - release_app/release_app.apk
+      - myapp/app.keystore
   on:
     repo: bastardapp/travis
   skip_cleanup: true
