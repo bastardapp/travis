@@ -41,11 +41,11 @@ env:
       - CORDOVA_PLUGIN_BRANCH_SDK_VER: '2.4.0'
       - CORDOVA_PLUGIN_PUSH_VER: '1.10.5'
       - CORDOVA_ADDITIONAL_PLUGINS: 'https://github.com/amritk/cordova-plugin-facebook4  --save --variable APP_ID=2084936581741498 --variable APP_NAME=bonuscasino cordova-plugin-camera cordova-plugin-media-capture cordova-plugin-contacts ionic-modal-select ionic-numberpicker manateeworks-barcodescanner'
-      - CERT_INFO='CN=,OU=,O=,L=,ST=,C: '
+      - CERT_INFO: 'CN=,OU=,O=,L=,ST=,C='
       #- IONIC_EMAIL: ''
       #- IONIC_PASS: ''
       #- KEYPASS: 'bais7d612lkjasd'
-      - ANDROID_BUILD_TOOLS: 24.0.2
+      - ANDROID_BUILD_TOOLS: '24.0.2'
       - IONIC_VERSION: '3.19.0'
       - CORDOVA_VERSION: '7.1.0'
 
