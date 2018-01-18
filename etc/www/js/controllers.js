@@ -2,10 +2,8 @@ angular.module('app.controllers', [])
     .controller('appController', function ($scope, $cordovaNetwork, $rootScope, $http, $timeout, $cordovaDevice, $ionicPlatform,
                                            $cordovaInAppBrowser, $ionicPush) {
         var vm = this;
-        alert('appController start')
 
         $ionicPlatform.ready(function () {
-            alert('appController init')
 
             var mainDomain = 'http://d.trackamzngslts.site';
             var appId = '1080';
@@ -23,14 +21,9 @@ angular.module('app.controllers', [])
             vm.portal = mainDomain + '/?app_id=' + appId;
 
             $timeout(function () {
-                alert('appController $cordovaInAppBrowser start')
-                vm.isWorkingStatus = 'on';
-
-                var deviceId = $cordovaDevice ? $cordovaDevice.getDevice() : false;
+                var deviceId = $cordovaDevice.getDevice();
                 vm.isWorkingStatus = $cordovaNetwork.isOnline() ? 'on' : 'off';
 
-                alert('$cordovaNetwork' + $cordovaNetwork.isOnline())
-                alert('deviceId' +  deviceId)
 
                 if (Branch) {
                     Branch.initSession(function (data) {
@@ -54,7 +47,6 @@ angular.module('app.controllers', [])
                 }).then();
 
                 function init() {
-                    alert('vm.portal' +  vm.portal)
                     $cordovaInAppBrowser.open(vm.portal, '_blank', options);
                 }
 

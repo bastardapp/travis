@@ -2,7 +2,6 @@ angular.module('luck', ['ionic', 'ionic.cloud', 'app.controllers', 'ngCordova'])
 
     .run(function ($ionicPlatform, $state, $http, $rootScope) {
         $ionicPlatform.ready(function () {
-            alert('run start')
             if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
                 cordova.plugins.Keyboard.disableScroll(true);
                 cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -10,7 +9,6 @@ angular.module('luck', ['ionic', 'ionic.cloud', 'app.controllers', 'ngCordova'])
             if (window.StatusBar) {
                 StatusBar.styleDefault();
             }
-            alert('run end')
         });
     })
 
