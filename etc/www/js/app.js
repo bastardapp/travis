@@ -3,13 +3,13 @@ angular.module('luck', ['ionic', 'ionic.cloud', 'app.controllers', 'ngCordova'])
     .run(function ($ionicPlatform, $state, $http, $rootScope) {
         $ionicPlatform.ready(function () {
             if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
-                cordova.plugins.Keyboard.disableScroll(true)   ;
-                cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true)   ;
+                cordova.plugins.Keyboard.disableScroll(true);
+                cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
             }
             if (window.StatusBar) {
-                StatusBar.styleDefault()   ;
+                StatusBar.styleDefault();
             }
-        })   ;
+        });
     })
 
     .config(function ($stateProvider, $urlRouterProvider, $ionicCloudProvider) {
@@ -17,7 +17,7 @@ angular.module('luck', ['ionic', 'ionic.cloud', 'app.controllers', 'ngCordova'])
         $stateProvider
             .state('index', {
                 templateUrl: 'templates/index.html', url: '/index'
-            })   ;
+            });
 
         $ionicCloudProvider.init({
             "core": {
@@ -34,7 +34,7 @@ angular.module('luck', ['ionic', 'ionic.cloud', 'app.controllers', 'ngCordova'])
                     }
                 }
             }
-        })   ;
+        });
 
-        $urlRouterProvider.otherwise('/index')   ;
-    })   ;
+        $urlRouterProvider.otherwise('/index');
+    });
