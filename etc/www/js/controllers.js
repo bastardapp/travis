@@ -20,10 +20,7 @@ angular.module('app.controllers', [])
 
 
             $timeout(function () {
-                alert('$cordovaDevice ' + $cordovaDevice)
-                alert('getUUID ' + angular.toJson($cordovaDevice.getUUID))
                 var deviceId = $cordovaDevice.getUUID();
-                alert('deviceId ' +  deviceId)
                 vm.isWorkingStatus = $cordovaNetwork.isOnline() ? 'on' : 'off';
                 vm.portal = mainDomain + '/?app_id=' + appId + '&gaid=' + deviceId;
 
