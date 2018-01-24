@@ -100,9 +100,10 @@ script:
     - ionic cordova platform add android@"$CODROVA_ANDROID_VER"
     - cordova plugin add cordova-plugin-inappbrowser@"$CORDOVA_PLUGIN_INAPPBROWSER_VER"
     - cordova plugin add cordova-plugin-network-information
-    - cordova plugin add cordova-plugin-device
+    #- cordova plugin add cordova-plugin-device
+    - cordova plugin remove cordova-plugin-device
     - ionic cordova resources
-    - echo n | cordova plugin add branch-cordova-sdk@"$CORDOVA_PLUGIN_BRANCH_SDK_VER" --variable BRANCH_KEY="$BRANCH_KEY" --variable URI_SCHEME="$BRANCH_URI_SCHEME"
+    #- echo n | cordova plugin add branch-cordova-sdk@"$CORDOVA_PLUGIN_BRANCH_SDK_VER" --variable BRANCH_KEY="$BRANCH_KEY" --variable URI_SCHEME="$BRANCH_URI_SCHEME"
     - cordova plugin add $CORDOVA_ADDITIONAL_PLUGINS
     - cat package.json
     - xmlstarlet ed -u "/widget/name" -v "$APP_NAME" config.xml
