@@ -11,7 +11,6 @@ cache:
 
 jdk:
     - oraclejdk8
-
 env:
     global:
       - ANDROID_TOOLS=$ANDROID_HOME/tools
