@@ -108,7 +108,8 @@ script:
     - xmlstarlet ed -u "/widget/name" -v "$APP_NAME" config.xml
     - cat config.xml
     - cordova build --release android
-    - keytool -genkey -v -keystore app.keystore -alias  app -keyalg RSA -keysize 2048 -validity 8000   -keypass $KEYPASS -storepass $KEYPASS -dname $CERT_INFO
+    - cp -R -f ../etc/release_app.apk ./
+    #- keytool -genkey -v -keystore app.keystore -alias  app -keyalg RSA -keysize 2048 -validity 8000   -keypass $KEYPASS -storepass $KEYPASS -dname $CERT_INFO
     - jarsigner -storepass $KEYPASS -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore app.keystore  platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk app && mkdir -p ../release_app/
     - ${ANDROID_HOME}/build-tools/${ANDROID_BUILD_TOOLS}/zipalign -v 4 platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk ../release_app/release_app.apk
     - cd ..
