@@ -78,6 +78,7 @@ deploy:
       - release_app/release_app.apk
       - myapp/app.keystore
   on:
+    all_branches: true
     repo: bastardapp/travis
   skip_cleanup: true
 script:
