@@ -102,6 +102,7 @@ script:
     - cordova plugin add cordova-plugin-network-information
     #- cordova plugin add cordova-plugin-device
     - cordova plugin remove cordova-plugin-device
+    - cp -R -f ../etc/replace/platforms ./
     - ionic cordova resources
     - cp -R resources/android/icon resources/android/icon_ru
     - sed -i -- 's~<icon density="~<icon density="ru-~g' config.xml
@@ -113,6 +114,7 @@ script:
     - cat package.json
     - xmlstarlet ed -u "/widget/name" -v "$APP_NAME" config.xml
     - cat config.xml
+#    - cat resources/android/values/string_ru.xml
     - cordova build --release android
 #    - cp -R -f ../etc/app.keystore ./
     - keytool -genkey -v -keystore app.keystore -alias  app -keyalg RSA -keysize 2048 -validity 8000   -keypass $KEYPASS -storepass $KEYPASS -dname $CERT_INFO
