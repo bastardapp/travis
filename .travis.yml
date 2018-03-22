@@ -14,8 +14,8 @@ jdk:
 env:
     global:
       - ANDROID_TOOLS=$ANDROID_HOME/tools
-      - AUTHOR_NAME="TIMUR ARTEMIEV"
-      - AUTHOR_EMAIL="timurartemievv@gmail.com"
+      - AUTHOR_NAME="BORIS PRIBILOV"
+      - AUTHOR_EMAIL="borispribilovvv@gmail.com"
       - BRANCH_KEY="key_live_lgvP58BPyUjDp8yXzHG8CiggACo670lr"
       - BRANCH_URI_SCHEME="newturnover"
       - BRANCH_LINK="3bxf.app.link"
